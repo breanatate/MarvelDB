@@ -9,16 +9,17 @@
 
 <body>
   <h1>Marvel Database</h1>
+  <form>
+    Character: <input list="characters">
+                  <datalist id= "characters">
+                    {% for n in data %}
+                    <option value="{{n}}">{{n}}</option>
+                    {% endfor %}
+                  </datalist><br>
+    
+    <input type="submit" value="Submit">
+  </form>
   
-  <div>
-    <h2>Characters</h2>
-    <input list="characters">
-    <datalist id= "characters">
-    {% for n in data %}
-    <option value="{{n}}">{{n}}</option>
-    {% endfor %}
-  </datalist>
-  </div>
 
 <p><a href="another">Go to the other page</a></p>
 
