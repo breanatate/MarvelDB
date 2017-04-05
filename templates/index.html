@@ -10,26 +10,27 @@
 <body>
   <h1>Marvel Database</h1>
   <form action= "another">
-    Affiliation: <input list="choices">
+    Affiliation: <input list="affiliations">
                   <datalist id= "affiliations">
                     {% for n in data %}
                     <option value="{{n}}">{{n}}</option>
                     {% endfor %}
                   </datalist><br>
-    Universe: 
+                </input>
+    Universe: <input list="universes">
                   <datalist id= "universes">
                     {% for n in data2 %}
                     <option value="{{n}}">{{n}}</option>
                     {% endfor %}
                   </datalist><br>
-    Power: 
+    Power: <input list="powers">
                   <datalist id= "powers">
                     {% for n in data2 %}
                     <option value="{{n}}">{{n}}</option>
                     {% endfor %}
                   </datalist><br>
     
-          <input type="submit" value="Submit">
+        <input type="submit" value="Submit">
   </form>
   
 
