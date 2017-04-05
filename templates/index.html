@@ -12,21 +12,24 @@
   <form action= "another" id = "selection"> 
     <input type="submit" value="Submit">
   </form>
-    Affiliation:  <select name= "affiliations" form = "selection">
-                    {% for n in data %}
-                    <option value="{{n}}">{{n}}</option>
-                    {% endfor %}
-                  </select><br>
-     Universe:      <select name="universes" form = "selection">
-                    {% for n in data2 %}
-                    <option value="{{n}}">{{n}}</option>
-                    {% endfor %}
-                  </select><br>
-      Power:      <select name="powers" form = "selection">
-                    {% for n in data3 %}
-                    <option value="{{n}}">{{n}}</option>
-                    {% endfor %}
-                  </select><br>
+  <br>
+   <select name= "affiliations" form = "selection">
+      {% for n in data %}
+      <option value="{{n}}">{{n}}</option>
+      {% endfor %}
+  </select>
+  <br>
+  <select name="universes" form = "selection">
+    {% for n in data2 %}
+    <option value="{{n}}">{{n}}</option>
+    {% endfor %}
+  </select>
+  <br>
+  <select name="powers" form = "selection">
+      {% for n in data3 %}
+      <option value="{{n}}">{{n}}</option>
+      {% endfor %}
+  </select>
     
   
 
