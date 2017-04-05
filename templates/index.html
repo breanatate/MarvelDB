@@ -22,6 +22,12 @@
                     <option value="{{n}}">{{n}}</option>
                     {% endfor %}
                   </datalist><br>
+    Power: <input list="powers">
+                  <datalist id= "powers">
+                    {% for n in data3 %}
+                    <option value="{{n}}">{{n}}</option>
+                    {% endfor %}
+                  </datalist><br>
     
     <input type="submit" value="Submit">
   </form>
