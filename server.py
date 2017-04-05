@@ -118,11 +118,19 @@ def index():
   for result in cursor:
     anames.append(result['aname'])  # can also be accessed using result[0]
   cursor.close()
+  #universes
   cursor = g.conn.execute("SELECT uid FROM universes")
   unis= []
   for result in cursor:
     unis.append(result['uid'])  # can also be accessed using result[0]
   cursor.close()
+  #powers
+  cursor = g.conn.execute("SELECT powname FROM powers")
+  powers= []
+  for result in cursor:
+    powers.append(result['powname'])  # can also be accessed using result[0]
+  cursor.close()
+
 
   #
   # Flask uses Jinja templates, which is an extension to HTML where you can
@@ -152,6 +160,7 @@ def index():
   #
   context = dict(data = anames)
   context = dict(data2 = unis)
+  context = dict(data3 = powers )
 
 
 
