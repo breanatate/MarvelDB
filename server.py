@@ -113,10 +113,15 @@ def index():
   #
   # example of a database query
   #
-  cursor = g.conn.execute("SELECT name FROM individuals")
-  names = []
+  cursor = g.conn.execute("SELECT aname FROM affiliations")
+  anames = []
   for result in cursor:
-    names.append(result['name'])  # can also be accessed using result[0]
+    anames.append(result['aname'])  # can also be accessed using result[0]
+  cursor.close()
+  cursor = g.conn.execute("SELECT uid FROM universes")
+  unis= []
+  for result in cursor:
+    unis.append(result['uid'])  # can also be accessed using result[0]
   cursor.close()
 
   #
@@ -145,8 +150,9 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = names)
-  
+  context = dict(data = anames)
+  context = dict(data2 = unis)
+
 
 
   #
