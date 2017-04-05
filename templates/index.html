@@ -9,24 +9,25 @@
 
 <body>
   <h1>Marvel Database</h1>
-  <form action= "another"> 
-    Affiliation:  <select name= "affiliations" multiple="multiple">
+  <form action= "another" id = "selection"> 
+    <input type="submit" value="Submit">
+  </form>
+    Affiliation:  <select name= "affiliations" form = "selection">
                     {% for n in data %}
                     <option value="{{n}}">{{n}}</option>
                     {% endfor %}
-                  </select>
-     Universe:      <select name="universes" multiple="multiple">
+                  </select><br>
+     Universe:      <select name="universes" form = "selection">
                     {% for n in data2 %}
                     <option value="{{n}}">{{n}}</option>
                     {% endfor %}
-                  </select>
-      Power:      <select name="powers" multiple="multiple">
+                  </select><br>
+      Power:      <select name="powers" form = "selection">
                     {% for n in data3 %}
                     <option value="{{n}}">{{n}}</option>
                     {% endfor %}
-                  </select>
-    <input type="submit" value="Submit">
-  </form>
+                  </select><br>
+    
   
 
 <p><a href="another">Go to the other page</a></p>
