@@ -9,12 +9,15 @@
 
 <body>
   <h1>Marvel Database</h1>
+  
   <div>{{data}}</div>
 
   <div>
+    <select>
     {% for n in data %}
-    <div>{{n}}</div>
+    <option value="{{n.name}}">{{n.name}}</option>
     {% endfor %}
+  </select>
   </div>
 
 <p><a href="another">Go to the other page</a></p>
