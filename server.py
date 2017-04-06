@@ -161,10 +161,10 @@ def index():
   #     {% endfor %}
   #
   context = dict(data = anames)
-  return render_template("index.html", **context)
-  context = dict(data2 = unis)
-  return render_template("index.html", **context)
-  context= dict (data3 = powers)
+  #return render_template("index.html", **context)
+  context1= dict(data2 = unis)
+  #return render_template("index.html", **context)
+  context2= dict (data3 = powers)
 
 
 
@@ -172,7 +172,7 @@ def index():
   # render_template looks in the templates/ folder for files.
   # for example, the below file reads template/index.html
   #
-  return render_template("index.html", **context)
+  return render_template("index.html", **context, **context1, **context2)
 
 
 #
