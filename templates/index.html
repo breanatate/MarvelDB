@@ -4,6 +4,24 @@
       font-size: 15pt;
       font-family: arial;
     }
+
+    affiliations {
+      width: 100px;
+      border: 2px solid red;
+      float:left;
+    }
+    universes {
+      width: 100px;
+      border: 2px solid red;
+      float:center;
+    }
+
+    powers {
+      width: 100px;
+      border: 2px solid green;
+      position: relative;
+      float:right;
+}
   </style>
 
 
@@ -18,24 +36,12 @@
       <option value="{{n}}">{{x}}</option>
       {% endfor %}
   </select>
-
-
-
-
-
-
-
   <br>
  Universe: <select name="universes" form = "selection">
               {% for n in data2 %}
             <option value="{{n}}">{{n}}</option>
               {% endfor %}
             </select>
-
-
-
-
-            
             <br>
  Power: <select name="powers" form = "selection">
       {% for n in data3 %}
