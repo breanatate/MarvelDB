@@ -162,7 +162,8 @@ def index():
   #
   context = dict(data = anames)
  
-  context= dict(data2 = unis)
+  context2= dict(data2 = unis)
+  return render_template("index.html", **context2)
   
   context= dict(data3 = powers)
 
@@ -173,7 +174,7 @@ def index():
   # for example, the below file reads template/index.html
   #
   return render_template("index.html", **context)
-  return render_template("index.html", **context2)
+  #return render_template("index.html")
 
 
 #
