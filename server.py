@@ -137,7 +137,7 @@ def index():
   cursor = g.conn.execute("SELECT city FROM locations")
   cities= []
   for result in cursor:
-    unis.append(result['cities'])  # can also be accessed using result[0]
+    unis.append(result['city'])  # can also be accessed using result[0]
   cursor.close()
 
   
