@@ -18,15 +18,22 @@
   </select>
   </div>
   <div style="float:left">
- Universe: <select name="unis" form = "selection">
+  Universe: <select name="unis" form = "selection">
               {% for n in data2 %}
             <option value="{{n}}">{{n}}</option>
               {% endfor %}
             </select>
   </div>
 <div style="float:left">
- Power: <select name="powers" form = "selection">
+  Power: <select name="powers" form = "selection">
       {% for n in data3 %}
+        <option value="{{n}}">{{n}}</option>
+      {% endfor %}
+      </select>
+</div>
+<div style="float:left">
+ City: <select name="cities" form = "selection">
+      {% for n in data4 %}
         <option value="{{n}}">{{n}}</option>
       {% endfor %}
       </select>
