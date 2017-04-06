@@ -160,12 +160,12 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = anames)
+  context = dict(data = anames, data2 = unis, data3 = powers)
  
-  context= dict(data2 = unis)
+  #context= dict(data2 = unis)
   #return render_template("index.html", **context2)
   
-  context= dict(data3 = powers)
+  #context= dict(data3 = powers)
 
 
 
@@ -173,7 +173,7 @@ def index():
   # render_template looks in the templates/ folder for files.
   # for example, the below file reads template/index.html
   #
-  return render_template("index.html")
+  return render_template("index.html", **context)
   #return render_template("index.html")
 
 
