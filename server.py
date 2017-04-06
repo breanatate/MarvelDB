@@ -160,9 +160,11 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context1 = dict(data = anames)
-  context2 = dict(data2 = unis)
-  context3 = dict(data3 = powers)
+  context = dict(data = anames)
+  return render_template("index.html", **context)
+  context = dict(data2 = unis)
+  return render_template("index.html", **context)
+  context= dict (data3 = powers)
 
 
 
@@ -170,9 +172,8 @@ def index():
   # render_template looks in the templates/ folder for files.
   # for example, the below file reads template/index.html
   #
-  return render_template("index.html", **context1)
-  return render_template("index.html", **context2)
-  return render_template("index.html", **context3)
+  return render_template("index.html", **context)
+
 
 #
 # This is an example of a different path.  You can see it at:
