@@ -162,7 +162,7 @@ def index():
   #
   context = dict(data = anames)
  
-  context2= dict(data2 = unis)
+  context= dict(data2 = unis)
   
   context= dict(data3 = powers)
 
