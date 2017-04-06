@@ -160,7 +160,7 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = anames).add(data2 = unis)
+  context = dict(data = anames)(data2 = unis)
  
   context= dict(data2 = unis)
   
