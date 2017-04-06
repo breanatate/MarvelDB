@@ -119,18 +119,27 @@ def index():
     anames.append(result['aname'])  # can also be accessed using result[0]
   cursor.close()
 
+  #powers
   cursor = g.conn.execute("SELECT powname FROM powers")
   powers= []
   for result in cursor:
     powers.append(result['powname'])  # can also be accessed using result[0]
   cursor.close()
+
   #universes
   cursor = g.conn.execute("SELECT uid FROM universes")
   unis= []
   for result in cursor:
     unis.append(result['uid'])  # can also be accessed using result[0]
   cursor.close()
-  #powers
+
+  #locations
+  cursor = g.conn.execute("SELECT city FROM locations")
+  cities= []
+  for result in cursor:
+    unis.append(result['cities'])  # can also be accessed using result[0]
+  cursor.close()
+
   
 
 
@@ -160,21 +169,14 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = anames, data2 = unis, data3 = powers)
+  context = dict(data = anames, data2 = unis, data3 = powers, data4 = cities)
  
-  #context= dict(data2 = unis)
-  #return render_template("index.html", **context2)
-  
-  #context= dict(data3 = powers)
-
-
 
   #
   # render_template looks in the templates/ folder for files.
   # for example, the below file reads template/index.html
   #
   return render_template("index.html", **context)
-  #return render_template("index.html")
 
 
 #
