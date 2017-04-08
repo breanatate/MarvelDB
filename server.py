@@ -187,16 +187,16 @@ def index():
 # Notice that the function name is another() rather than index()
 # The functions for each app.route need to have different names
 #
-@app.route('/another')
-def another():
+#@app.route('/another')
+#def another():
 
-  cursor = g.conn.execute("SELECT i.name FROM individuals AS i, affiliations AS a WHERE a.aname = 'avengers'")
-  results = []
-  for result in cursor:
-    results.append(result['result'])  # can also be accessed using result[0]
-  cursor.close()
-  context = dict(data = results)
-  return render_template("another.html", **context)
+ # cursor = g.conn.execute("SELECT i.name FROM individuals AS i, affiliations AS a WHERE a.aname = 'avengers'")
+  #results = []
+  #for result in cursor:
+   # results.append(result['result'])  # can also be accessed using result[0]
+  #cursor.close()
+  #context = dict(data = results)
+  #return render_template("another.html", **context)
 
 
 # Example of adding new data to the database
@@ -206,6 +206,17 @@ def add():
   g.conn.execute('INSERT INTO test(name) VALUES (%s)', name)
   return redirect('/')
 
+@app.route('/another', methods=['GET'])
+def results():
+  aname = request.form['anames']
+  uid = request.form['unis']
+  g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, powers AS p, universes AS u WHERE  a.name = anames AND uid = unis')
+  results = []
+  for result in cursor:
+    results.append(result['result'])  # can also be accessed using result[0]
+  cursor.close()
+  context = dict(data = results)
+  return render_template("another.html", **context)
 
 @app.route('/login')
 def login():
