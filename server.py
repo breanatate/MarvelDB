@@ -210,7 +210,7 @@ def add():
 def results():
   aname = request.form['anames']
   uid = request.form['unis']
-  g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, powers AS p, universes AS u WHERE  a.name = anames AND u.uid = unis')
+  g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, powers AS p, universes AS u WHERE a.name = anames AND u.uid = unis')
   results = []
   for result in cursor:
     results.append(result['result'])  # can also be accessed using result[0]
