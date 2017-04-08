@@ -210,7 +210,7 @@ def add():
 def results():
   aname = request.args['anames']
   uid = request.args['unis']
-  cursor = g.conn.execute('SELECT DISTINCT i.name FROM individuals AS i, affiliations AS a WHERE a.aname = aname')
+  cursor = g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a WHERE a.aname = aname')
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
