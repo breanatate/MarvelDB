@@ -206,10 +206,10 @@ def add():
   g.conn.execute('INSERT INTO test(name) VALUES (%s)', name)
   return redirect('/')
 
-@app.route('/another', methods=['GET', 'POST'])
+@app.route('/another', methods=['GET'])
 def results():
-  aname = request.form['anames']
-  uid = request.form['unis']
+  aname = request.args['anames']
+  uid = request.args['unis']
   g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, universes AS u WHERE a.aname = aname AND u.uid = uid')
   results = []
   for result in cursor:
