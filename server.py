@@ -189,7 +189,14 @@ def index():
 #
 @app.route('/another')
 def another():
-  return render_template("another.html")
+
+  cursor = g.conn.execute("SELECT i.name FROM individuals AS i, affiliations AS a, universes as u, locations as l WHERE a.aname = 'avengers' AND u.uid = 'Earth-616' AND l.city = 'Manhattan'")
+  results = []
+  for result in cursor:
+    results.append(result['result'])  # can also be accessed using result[0]
+  cursor.close()
+  context = dict(data = results)
+  return render_template("another.html", **context)
 
 
 # Example of adding new data to the database
