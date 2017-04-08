@@ -190,7 +190,7 @@ def index():
 @app.route('/another')
 def another():
 
-  cursor = g.conn.execute("SELECT i.name FROM individuals AS i, affiliations AS a, universes as u, locations as l WHERE a.aname = 'avengers' AND u.uid = 'Earth-616' AND l.city = 'Manhattan'")
+  cursor = g.conn.execute("SELECT i.name FROM individuals AS i, affiliations AS a WHERE a.aname = 'avengers'")
   results = []
   for result in cursor:
     results.append(result['result'])  # can also be accessed using result[0]
