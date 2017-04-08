@@ -212,7 +212,7 @@ def results():
   uid = request.args['unis']
   city = request.args['cities']
   power = request.args['powers']
-  cursor = g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, powers AS p, locations AS l WHERE a.aname = aname AND l.city = city AND p.powname = power' )
+  cursor = g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, locations AS l WHERE a.aname = aname AND l.city = city' )
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
