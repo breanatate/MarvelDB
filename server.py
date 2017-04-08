@@ -206,7 +206,7 @@ def add():
   g.conn.execute('INSERT INTO test(name) VALUES (%s)', name)
   return redirect('/')
 
-@app.route('/another', methods=['GET'])
+@app.route('/another', methods=['GET', 'POST'])
 def results():
   aname = request.form['anames']
   uid = request.form['unis']
