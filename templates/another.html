@@ -9,5 +9,12 @@
 
 <body>
 	<h1>Results</h1>
+	<h2>Individuals that match this classification:</h2>
+	<ol>
+  	{% for n in data %}
+  	<li>{{n}}</li>
+  	{% endfor %}
+	</ol>
+	
 </body>
 
