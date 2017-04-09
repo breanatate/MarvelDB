@@ -217,7 +217,7 @@ def results():
   aname = request.args['anames']
   uid = request.args['unis']
   city = request.args['cities']
-  cursor = g.conn.execute('SELECT i.name FROM Individuals AS i, Affiliations AS a, Lives_in AS l WHERE a.aname = aname AND l.city = city AND l.alias= i.alias' )
+  cursor = g.conn.execute('SELECT i.name FROM Individuals AS i, Affiliations AS a, Universes AS u, Lives_in AS l WHERE a.aname = aname AND l.city = city AND l.alias= i.alias AND i.uid = uid' )
   results = []
   results2 = []
   for result in cursor:
