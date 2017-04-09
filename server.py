@@ -217,7 +217,7 @@ def results():
   aname = request.args['anames']
   tuid = request.args['unis']
   city = request.args['cities']
-  cursor = g.conn.execute("SELECT Individuals.name FROM Individuals LEFT JOIN Universes ON Individuals.uid = Universes.uid WHERE individuals.uid = 'tuid' AND Universes.uid = 'tuid'")
+  cursor = g.conn.execute("SELECT Individuals.name FROM Individuals LEFT JOIN Universes ON Individuals.uid = Universes.uid")
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
