@@ -1,11 +1,27 @@
 <html>
-  <style>
-    body{ 
-      font-size: 15pt;
-      font-family: arial;
-    }
+<style>
+body{ 
+  font-size: 15pt;
+  font-family: arial;
 }
-  </style>
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+</style>
 
 <body>
 	<h1>Results</h1>
@@ -25,6 +41,24 @@
   	<li value="{{n}}">{{n}}</li>
   	{% endfor %}
 	</ol>
+	<table>
+  <tr>
+    <th>Alias</th>
+    <th>Name</th>
+    <th>Appearance Date</th>
+  </tr>
+  
+  	<tr>
+  		{% for n in data %}
+    	<td value="{{n}}">{{n}}</td>
+    	{% endfor %}
+    	{% for n in data1 %}
+    	<tdvalue="{{n}}">{{n}}</td>
+    	{% endfor %}
+    	{% for n in data2 %}
+    	<tdvalue="{{n}}">{{n}}</td>
+    	{% endfor %}
+  	</tr>
 	
 </body>
 </html>
