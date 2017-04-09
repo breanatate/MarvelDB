@@ -218,7 +218,6 @@ def results():
       row.append(person[2])
       results.append(row)
     cursor.close()
-  results.append(names)
   
   context = dict(data = results)
   return render_template("another.html", **context)
