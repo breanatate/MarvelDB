@@ -11,21 +11,7 @@
 <body>
   <h1>Marvel Database</h1>
   <div style="float:left">
-  Affiliaton: <select id="anames" name="anames" form ="selection">
-      {% for n in data %}
-      <option value="{{n}}">{{n}}</option>
-      {% endfor %}
-  </select>
-  </div>
-  <div style="float:left">
-  Universe: <select id = "unis" name="unis" form = "selection">
-              {% for n in data2 %}
-            <option value="{{n}}">{{n}}</option>
-              {% endfor %}
-            </select>
-  </div>
-  <div style="float:left">
-  Location: <select id = "city" name="cities" form = "selection">
+  Location: <select id = "cities" name="cities" form = "selection">
               {% for n in data3 %}
             <option value="{{n}}">{{n}}</option>
               {% endfor %}
