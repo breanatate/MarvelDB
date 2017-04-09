@@ -123,7 +123,7 @@ def index():
   cursor = g.conn.execute("SELECT uid FROM universes")
   unis= []
   for result in cursor:
-    unis.append(result['uni'])  # can also be accessed using result[0]
+    unis.append(result[0])  # can also be accessed using result[0]
   cursor.close()
   
 
