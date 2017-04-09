@@ -212,11 +212,12 @@ def results():
   #get name and appearance date
   names = []
   for person in results[0]:
-    cursor = g.conn.execute('SELECT i.name, i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
+    cursor = g.conn.execute('SELECT i.alias, i.name, i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
     for person in cursor:
       row = []
       row.append(person[0])
       row.append(person[1])
+      row.append(person[2])
       results.append(row)
     cursor.close()
   results.append(names)
