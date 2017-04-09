@@ -127,7 +127,7 @@ def index():
   cursor.close()
 
   #locations
-  cursor = g.conn.execute("SELECT city FROM locations")
+  cursor = g.conn.execute("SELECT city FROM lives_in")
   cities= []
   for result in cursor:
     cities.append(result['city'])  # can also be accessed using result[0]
@@ -217,7 +217,7 @@ def results():
   aname = request.args['anames']
   uid = request.args['unis']
   city = request.args['cities']
-  cursor = g.conn.execute('SELECT DISTINCT i.name FROM individuals AS i, affiliations AS a, lives_in AS l WHERE a.aname = aname AND l.city = city' )
+  cursor = g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, lives_in AS l WHERE a.aname = aname AND l.city = city' )
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
