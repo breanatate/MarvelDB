@@ -207,8 +207,8 @@ def add():
 @app.route('/another', methods=['GET'])
 def results():
   aname = request.args['anames']
-  uid = request.args['unis']
-  cursor = g.conn.execute("SELECT Individuals.alias FROM Individuals WHERE Individuals.uid = uid")
+  uni = request.args['unis']
+  cursor = g.conn.execute("SELECT i.alias FROM Individuals AS i WHERE i.uid = uni")
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
