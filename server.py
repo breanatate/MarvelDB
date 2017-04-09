@@ -209,22 +209,18 @@ def results():
     cities.append(result[0])  # can also be accessed using result[0]
   cursor.close()
   results.append(cities)
-  #get name
+  #get name and appearance date
   names = []
   for person in results[0]:
-    cursor = g.conn.execute('SELECT i.name FROM Individuals AS i WHERE i.alias = (%s)', person)
+    cursor = g.conn.execute('SELECT i.name, i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
     for person in cursor:
-      names.append(person[0])
+      row = []
+      row.append(person[0])
+      row.append(person[1])
+      results.append(row)
     cursor.close()
   results.append(names)
-  #get appearance date
-  dates = []
-  for person in results[0]:
-    cursor = g.conn.execute('SELECT i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
-    for date in cursor:
-      dates.append(date[0])
-    cursor.close()
-  results.append(dates)
+  
   context = dict(data = results)
   return render_template("another.html", **context)
 
