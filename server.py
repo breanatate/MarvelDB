@@ -219,7 +219,7 @@ def results():
   results.append(names)
   #get appearance date
   dates = []
-  for person in results:
+  for person in results[0]:
     cursor = g.conn.execute('SELECT i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
   for date in cursor:
     dates.append(date[0])
