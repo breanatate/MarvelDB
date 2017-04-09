@@ -212,7 +212,7 @@ def results():
   #get name
   names = []
   for person in results[0]:
-     cursor = g.conn.execute('SELECT i.name FROM Individuals AS i WHERE i.alias = (%s)', person)
+    cursor = g.conn.execute('SELECT i.name FROM Individuals AS i WHERE i.alias = (%s)', person)
     for person in cursor:
       names.append(person[0])
     cursor.close()
