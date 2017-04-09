@@ -198,6 +198,19 @@ def index():
   #context = dict(data = results)
   #return render_template("another.html", **context)
 
+#media tab
+@app.route('/profile', methods['GET'])
+def profile():
+  cursor = g.conn.execute("SELECT aname FROM Appears_In AS ai, Individuals AS i, Affiliations AS a, Powers AS p ")
+  anames = []
+  for result in cursor:
+    anames.append(result['aname'])  # can also be accessed using result[0]
+  cursor.close()
+
+  return render_template("media.html", **context)
+
+
+
 
 # Example of adding new data to the database
 @app.route('/add', methods=['POST'])
@@ -212,7 +225,7 @@ def results():
   uid = request.args['unis']
   city = request.args['cities']
   power = request.args['powers']
-  cursor = g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, locations AS l WHERE a.aname = aname AND l.city = city' )
+  cursor = g.conn.execute('SELECT DISTINCT i.name FROM individuals AS i, affiliations AS a, locations AS l WHERE a.aname = aname AND l.city = city' )
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
