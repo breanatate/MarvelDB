@@ -119,13 +119,6 @@ def index():
     anames.append(result['aname'])  # can also be accessed using result[0]
   cursor.close()
 
-  #powers
-  cursor = g.conn.execute("SELECT powname FROM powers")
-  powers= []
-  for result in cursor:
-    powers.append(result['powname'])  # can also be accessed using result[0]
-  cursor.close()
-
   #universes
   cursor = g.conn.execute("SELECT uid FROM universes")
   unis= []
@@ -169,7 +162,7 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = anames, data2 = unis, data3 = powers, data4 = cities)
+  context = dict(data = anames, data2 = unis, data4 = cities)
  
 
   #
@@ -224,8 +217,7 @@ def results():
   aname = request.args['anames']
   uid = request.args['unis']
   city = request.args['cities']
-  power = request.args['powers']
-  cursor = g.conn.execute('SELECT DISTINCT i.name FROM individuals AS i, affiliations AS a, locations AS l WHERE a.aname = aname AND l.city = city' )
+  cursor = g.conn.execute('SELECT DISTINCT i.name FROM individuals AS i, affiliations AS a, lives_in AS l WHERE a.aname = aname AND l.city = city' )
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
