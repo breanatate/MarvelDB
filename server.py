@@ -219,14 +219,14 @@ def results():
   city = request.args['cities']
   cursor = g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, lives_in AS l WHERE a.aname = aname AND l.city = city' )
   results = []
-
+  results2 = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
   cursor.close()
   for result in results:
-    if result = result+1:
-      results.remove(result+1)
-  context = dict(data = results)
+    if result not in results2:
+      results2.append(result)
+  context = dict(data = results2)
   return render_template("another.html", **context)
 
 @app.route('/login')
