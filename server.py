@@ -211,7 +211,7 @@ def results():
   cursor = g.conn.execute("SELECT i.alias, i.uid FROM individuals AS i ")
   results = []
   for result in cursor:
-    results.append(result[0])  # can also be accessed using result[0]
+    results.append(result['result'])  # can also be accessed using result[0]
   cursor.close()
   context = dict(data5 = results)
   return render_template("another.html", **context)
