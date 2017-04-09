@@ -210,9 +210,9 @@ def results():
   cursor.close()
   results.append(cities)
   #get name
+  names = []
   for person in results:
      cursor = g.conn.execute('SELECT i.name FROM Individuals AS i WHERE i.alias = (%s)', person)
-  names = []
   for person in cursor:
     names.append(person[0])
   cursor.close()
