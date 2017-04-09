@@ -215,9 +215,9 @@ def add():
 @app.route('/another', methods=['GET'])
 def results():
   aname = request.args['anames']
-  uid = request.args['unis']
+  tuid = request.args['unis']
   city = request.args['cities']
-  cursor = g.conn.execute('SELECT individuals.name FROM Individuals INNER JOIN Universes ON individuals.uid = universes.uid WHERE individuals.uid = uid')
+  cursor = g.conn.execute('SELECT individuals.name FROM Individuals INNER JOIN Universes ON individuals.uid = universes.uid WHERE individuals.uid = tuid')
   results = []
   results2 = []
   for result in cursor:
