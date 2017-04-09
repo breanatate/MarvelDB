@@ -208,14 +208,16 @@ def results():
     results.append(result[0])  # can also be accessed using result[0]
   cursor.close()
   #get name
+  for person in results:
+     cursor = g.conn.execute('SELECT i.name FROM Individuals AS i WHERE i.alias = (%s)', person)
   names = []
-  cursor = g.conn.execute('SELECT i.name FROM Individuals AS i WHERE i.alias = (%s)', person)
   for person in cursor:
     names.append(person[0])
   cursor.close()
-  #get appearance datte
+  #get appearance date
   dates = []
-  cursor = g.conn.execute('SELECT i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
+  for person in results:
+    cursor = g.conn.execute('SELECT i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
   for date in cursor:
     dates.append(date[0])
   cursor.close()
