@@ -219,14 +219,10 @@ def results():
   city = request.args['cities']
   cursor = g.conn.execute("SELECT individuals.name FROM Individuals INNER JOIN Universes ON individuals.uid = universes.uid WHERE individuals.uid = 'tuid'")
   results = []
-  results2 = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
   cursor.close()
-  for result in results:
-    if result not in results2:
-      results2.append(result)
-  context = dict(data5 = results2)
+  context = dict(data5 = results)
   return render_template("another.html", **context)
 
 @app.route('/login')
