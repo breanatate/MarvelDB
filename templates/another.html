@@ -26,22 +26,8 @@ tr:nth-child(even) {
 <body>
 	<h1>Results</h1>
 	<h2>Individuals that match this classification:</h2>
-	<ol>
-  	{% for n in data %}
-  	<li value="{{n}}">{{n}}</li>
-  	{% endfor %}
-	</ol>
-	<ol>
-  	{% for n in data1 %}
-  	<li value="{{n}}">{{n}}</li>
-  	{% endfor %}
-	</ol>
-	<ol>
-  	{% for n in data2 %}
-  	<li value="{{n}}">{{n}}</li>
-  	{% endfor %}
-	</ol>
-	<table>
+	
+<table>
   <tr>
     <th>Alias</th>
     <th>Name</th>
@@ -55,6 +41,7 @@ tr:nth-child(even) {
     	
   	</tr>
   	{% endfor %}
+  </table>
 	
 </body>
 </html>
