@@ -113,18 +113,7 @@ def index():
   #
   # example of a database query
   #
-  cursor = g.conn.execute("SELECT aname FROM affiliations")
-  anames = []
-  for result in cursor:
-    anames.append(result['aname'])  # can also be accessed using result[0]
-  cursor.close()
 
-  #universes
-  cursor = g.conn.execute("SELECT uid FROM universes")
-  unis= []
-  for result in cursor:
-    unis.append(result[0])  # can also be accessed using result[0]
-  cursor.close()
   #locations
   cursor = g.conn.execute("SELECT city FROM Locations")
   cities= []
@@ -160,7 +149,7 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = anames, data2 = unis, data3 = cities)
+  context = dict(data = cities)
  
 
   #
@@ -212,16 +201,25 @@ def add():
 
 @app.route('/another', methods=['GET'])
 def results():
-  aname = request.args['anames']
-  uid = request.args['unis']
   city = request.args['cities']
-  #cursor = g.conn.execute('SELECT Lives_In.alias FROM Lives_In INNER JOIN Locations ON Lives_In.city= Locations.city AND Lives_In.city = (%s)', city)
-  cursor = g.conn.execute('SELECT i.alias FROM Individuals AS i WHERE i.uid = (%s)',uid)
+  cursor = g.conn.execute('SELECT Lives_In.alias FROM Lives_In INNER JOIN Locations ON Lives_In.city= Locations.city AND Lives_In.city = (%s)', city)
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
   cursor.close()
-  context = dict(data5 = results)
+  #get name
+  names = []
+  cursor = g.conn.execute('SELECT i.name FROM Individuals AS i WHERE i.alias = (%s)', person)
+  for person in cursor:
+    names.append(person[0])
+  cursor.close()
+  #get appearance datte
+  dates = []
+  cursor = g.conn.execute('SELECT i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
+  for date in cursor:
+    dates.append(date[0])
+  cursor.close()
+  context = dict(data = results, data1 = names, data2 = dates)
   return render_template("another.html", **context)
 
 @app.route('/login')
