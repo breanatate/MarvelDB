@@ -125,6 +125,12 @@ def index():
   for result in cursor:
     unis.append(result[0])  # can also be accessed using result[0]
   cursor.close()
+  #locations
+  cursor = g.conn.execute("SELECT city FROM Lives_in")
+  cities= []
+  for result in cursor:
+    cities.append(result[0])  # can also be accessed using result[0]
+  cursor.close()
   
 
 
@@ -154,7 +160,7 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = anames, data2 = unis)
+  context = dict(data = anames, data2 = unis, data3 = cities)
  
 
   #
@@ -207,8 +213,9 @@ def add():
 @app.route('/another', methods=['GET'])
 def results():
   aname = request.args['anames']
-  uni = request.args['unis']
-  cursor = g.conn.execute("SELECT i.alias FROM Individuals AS i WHERE i.uid = uni")
+  uid = request.args['unis']
+  city = request.args['cities']
+  cursor = g.conn.execute("SELECT l.alias FROM Lives_in AS l WHERE l.city= city")
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
