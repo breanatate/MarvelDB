@@ -217,7 +217,7 @@ def results():
   aname = request.args['anames']
   uid = request.args['unis']
   city = request.args['cities']
-  cursor = g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, lives_in AS l WHERE a.aname = aname AND l.city = city AND l.alias= i.alias' )
+  cursor = g.conn.execute('SELECT i.name FROM Individuals AS i, Affiliations AS a, Lives_in AS l WHERE a.aname = aname AND l.city = city AND l.alias= i.alias' )
   results = []
   results2 = []
   for result in cursor:
@@ -226,7 +226,7 @@ def results():
   for result in results:
     if result not in results2:
       results2.append(result)
-  context = dict(data = results2)
+  context = dict(data5 = results2)
   return render_template("another.html", **context)
 
 @app.route('/login')
