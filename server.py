@@ -201,12 +201,14 @@ def add():
 
 @app.route('/another', methods=['GET'])
 def results():
+  results = []
   city = request.args['cities']
   cursor = g.conn.execute('SELECT Lives_In.alias FROM Lives_In INNER JOIN Locations ON Lives_In.city= Locations.city AND Lives_In.city = (%s)', city)
-  results = []
+  cities = []
   for result in cursor:
-    results.append(result[0])  # can also be accessed using result[0]
+    cities.append(result[0])  # can also be accessed using result[0]
   cursor.close()
+  results.append(cities)
   #get name
   for person in results:
      cursor = g.conn.execute('SELECT i.name FROM Individuals AS i WHERE i.alias = (%s)', person)
@@ -214,6 +216,7 @@ def results():
   for person in cursor:
     names.append(person[0])
   cursor.close()
+  results.append(names)
   #get appearance date
   dates = []
   for person in results:
@@ -221,7 +224,8 @@ def results():
   for date in cursor:
     dates.append(date[0])
   cursor.close()
-  context = dict(data = results, data1 = names, data2 = dates)
+  results.append(dates)
+  context = dict(data = results)
   return render_template("another.html", **context)
 
 @app.route('/login')

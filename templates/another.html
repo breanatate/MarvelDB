@@ -47,18 +47,14 @@ tr:nth-child(even) {
     <th>Name</th>
     <th>Appearance Date</th>
   </tr>
-  
+  	{% for n in data %}
   	<tr>
-  		{% for n in data %}
-    	<td value="{{n}}">{{n}}</td>
-    	{% endfor %}
-    	{% for n in data1 %}
-    	<tdvalue="{{n}}">{{n}}</td>
-    	{% endfor %}
-    	{% for n in data2 %}
-    	<tdvalue="{{n}}">{{n}}</td>
-    	{% endfor %}
+    	<td value="{{n[1]}}">{{n[1]}}</td>
+    	<td value="{{n[2]}}">{{n[2]}}</td>
+    	<td value="{{n[3]}}">{{n[3]}}</td>
+    	
   	</tr>
+  	{% endfor %}
 	
 </body>
 </html>
