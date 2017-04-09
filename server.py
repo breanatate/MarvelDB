@@ -199,7 +199,7 @@ def index():
   #return render_template("another.html", **context)
 
 #media tab
-@app.route('/profile', methods['GET'])
+@app.route('/profile', methods=['GET'])
 def profile():
   cursor = g.conn.execute("SELECT aname FROM Appears_In AS ai, Individuals AS i, Affiliations AS a, Powers AS p ")
   anames = []
