@@ -212,6 +212,7 @@ def results():
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
+    print(result[0])
   cursor.close()
   context = dict(data5 = results)
   return render_template("another.html", **context)
