@@ -215,7 +215,7 @@ def results():
   aname = request.args['anames']
   uid = request.args['unis']
   city = request.args['cities']
-  cursor = g.conn.execute("SELECT i.alias FROM Lives_In INNER JOIN Locations ON Lives_In.city= Locations.city AND Lives_In.city = city ")
+  cursor = g.conn.execute('SELECT i.alias FROM Lives_In INNER JOIN Locations ON Lives_In.city= Locations.city AND Lives_In.city = (%s)', city)
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
