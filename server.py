@@ -213,17 +213,17 @@ def results():
   names = []
   for person in results[0]:
      cursor = g.conn.execute('SELECT i.name FROM Individuals AS i WHERE i.alias = (%s)', person)
-  for person in cursor:
-    names.append(person[0])
-  cursor.close()
+    for person in cursor:
+      names.append(person[0])
+    cursor.close()
   results.append(names)
   #get appearance date
   dates = []
   for person in results[0]:
     cursor = g.conn.execute('SELECT i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
-  for date in cursor:
-    dates.append(date[0])
-  cursor.close()
+    for date in cursor:
+      dates.append(date[0])
+    cursor.close()
   results.append(dates)
   context = dict(data = results)
   return render_template("another.html", **context)
