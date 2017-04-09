@@ -217,7 +217,7 @@ def results():
   aname = request.args['anames']
   uni = request.args['unis']
   city = request.args['cities']
-  cursor = g.conn.execute('SELECT i.name FROM Individuals AS i INNER JOIN on Belongs_To AS b WHERE i.alias = b.alias AND b.aname = aname' )
+  cursor = g.conn.execute('SELECT i.name FROM Individuals AS i INNER JOIN ON i.alias = belongs_to.alias WHERE belongs_to.aname = aname' )
   results = []
   results2 = []
   for result in cursor:
