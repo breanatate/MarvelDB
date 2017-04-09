@@ -204,14 +204,12 @@ def results():
   results = []
   city = request.args['cities']
   cursor = g.conn.execute('SELECT Lives_In.alias FROM Lives_In INNER JOIN Locations ON Lives_In.city= Locations.city AND Lives_In.city = (%s)', city)
-  cities = []
+  in_city = []
   for result in cursor:
-    cities.append(result[0])  # can also be accessed using result[0]
+    in_city.append(result[0])  # can also be accessed using result[0]
   cursor.close()
-  results.append(cities)
   #get name and appearance date
-  names = []
-  for person in results[0]:
+  for person in in_city:
     cursor = g.conn.execute('SELECT i.alias, i.name, i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
     for person in cursor:
       row = []
