@@ -24,6 +24,13 @@
               {% endfor %}
             </select>
   </div>
+  <div style="float:left">
+  Location: <select id = "city" name="cities" form = "selection">
+              {% for n in data3 %}
+            <option value="{{n}}">{{n}}</option>
+              {% endfor %}
+            </select>
+  </div>
 <form method = "GET" action= "/another" id ="selection"> 
     <input type="submit" value="Submit">
   </form>
