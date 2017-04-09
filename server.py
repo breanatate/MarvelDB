@@ -125,14 +125,6 @@ def index():
   for result in cursor:
     unis.append(result['uid'])  # can also be accessed using result[0]
   cursor.close()
-
-  #locations
-  cursor = g.conn.execute("SELECT city FROM lives_in")
-  cities= []
-  for result in cursor:
-    cities.append(result['city'])  # can also be accessed using result[0]
-  cursor.close()
-
   
 
 
@@ -162,7 +154,7 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = anames, data2 = unis, data4 = cities)
+  context = dict(data = anames, data2 = unis)
  
 
   #
@@ -216,8 +208,7 @@ def add():
 def results():
   aname = request.args['anames']
   tuid = request.args['unis']
-  city = request.args['cities']
-  cursor = g.conn.execute("SELECT Individuals.name, Individuals.uid FROM Individuals LEFT JOIN Universes ON Individuals.uid = Universes.uid AND Individuals.uid = 'tuid'")
+  cursor = g.conn.execute("SELECT i.name, i.uid FROM Individuals AS i LEFT JOIN Universes as u ON i.uid = u.uid WHERE u.uid = 'tuid'")
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
