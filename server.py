@@ -219,9 +219,13 @@ def results():
   city = request.args['cities']
   cursor = g.conn.execute('SELECT i.name FROM individuals AS i, affiliations AS a, lives_in AS l WHERE a.aname = aname AND l.city = city' )
   results = []
+
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
   cursor.close()
+  for result in results:
+    if result = result+1:
+      results.remove(result+1)
   context = dict(data = results)
   return render_template("another.html", **context)
 
