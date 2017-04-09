@@ -208,10 +208,10 @@ def add():
 def results():
   aname = request.args['anames']
   tuid = request.args['unis']
-  cursor = g.conn.execute("SELECT individuals.alias FROM individuals  WHERE individuals.uid = 'tuid'")
+  cursor = g.conn.execute("SELECT i.alias FROM individuals AS i WHERE i.uid = 'tuid'")
   people = []
   for result in cursor:
-    people.append(result[0])  # can also be accessed using result[0]
+    people.append(people[result[0]])  # can also be accessed using result[0]
   cursor.close()
   context = dict(data5 = people)
   return render_template("another.html", **context)
