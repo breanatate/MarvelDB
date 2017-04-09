@@ -208,7 +208,7 @@ def add():
 def results():
   aname = request.args['anames']
   uid = request.args['unis']
-  cursor = g.conn.execute("SELECT Individuals.uid FROM Individuals WHERE Individuals.uid = uid ")
+  cursor = g.conn.execute("SELECT Individuals.uid FROM Individuals WHERE Individuals.uid = uid AND Individuals.uid = uid ")
   results = []
   for result in cursor:
     results.append(result[0])  # can also be accessed using result[0]
