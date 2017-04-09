@@ -215,9 +215,9 @@ def add():
 @app.route('/another', methods=['GET'])
 def results():
   aname = request.args['anames']
-  uniid = request.args['unis']
+  uni = request.args['unis']
   city = request.args['cities']
-  cursor = g.conn.execute('SELECT i.name FROM Individuals AS i, Affiliations AS a, Universes AS u, Lives_in AS l WHERE a.aname = aname AND l.city = city AND l.alias= i.alias AND i.uid = uniid' )
+  cursor = g.conn.execute('SELECT i.name FROM Individuals AS i, Affiliations AS a, Universes AS u, Lives_in AS l WHERE a.aname = aname AND l.city = city AND l.alias= i.alias AND i.uid = uni' )
   results = []
   results2 = []
   for result in cursor:
