@@ -210,12 +210,16 @@ def results():
   cursor.close()
   #get name and appearance date
   for person in in_city:
-    cursor = g.conn.execute('SELECT i.alias, i.name, i.appdate FROM Individuals AS i WHERE i.alias = (%s)', person)
+    cursor = g.conn.execute('SELECT i.alias, i.name, i.appdate, i.species, i.uid FROM Individuals AS i WHERE i.alias = (%s)', person)
     for person in cursor:
       row = []
       row.append(person[0])
       row.append(person[1])
       row.append(person[2])
+      row.append(person[3])
+      row.append(person[4])
+
+
       results.append(row)
     cursor.close()
   
