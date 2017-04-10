@@ -24,7 +24,9 @@ tr:nth-child(even) {
 </style>
 
 <body>
-	<h1>data[0]</h1>
+	{% for n in data %}
+	<h1>{{n[0]}}</h1>
+	{% endfor %}
 <table>
   <tr>
     <th>Alias</th>
