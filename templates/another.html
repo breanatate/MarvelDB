@@ -25,7 +25,8 @@ tr:nth-child(even) {
 
 <body>
 	<h1>Results</h1>
-	<h2>Individuals that match this classification:</h2>	
+	<h2>Individuals that match this classification:</h2>
+	
 <table>
   <tr>
     <th>Alias</th>
@@ -36,10 +37,7 @@ tr:nth-child(even) {
   </tr>
   	{% for n in data %}
   	<tr>
-  		<form method = "GET" action= "/profile" id ="prof"> 
-  			<input type="hidden" value="n[0]">
-    	<td id= 'alias' name = 'alias'>{{n[0]}}</td>
-    	 </form>
+    	<td method = "GET" id= 'alias' name ='alias'><a href='/profile'>{{n[0]}}</a></td>
     	<td>{{n[1]}}</td>
     	<td>{{n[2]}}</td>
     	<td>{{n[3]}}</td>
