@@ -184,11 +184,11 @@ def profile(alias):
 
     results.append(row)
   cursor.close()
-  cursor = g.conn.execute('SELECT b.affiliation FROM Belongs_To AS b AS a WHERE b.alias = (%s)' , alias)
+  cursor = g.conn.execute('SELECT b.affiliation FROM Belongs_To AS b WHERE b.alias = (%s)' , alias)
   results1 = []
   for result in cursor:
     affiliation = result[0]
-    cursor = g.conn.execute('SELECT i.alias FROM Belongs_To AS b AS a WHERE b.affiliation = (%s)' , affiliation)
+    cursor = g.conn.execute('SELECT b.alias FROM Belongs_To AS b WHERE b.affiliation = (%s)' , affiliation)
     for result in cursor:
       results1.append(result[0])
   context = dict(data = results, data1 =results1)
