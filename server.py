@@ -171,13 +171,20 @@ def index():
 #profile page
 @app.route('/profile', methods=['GET'])
 def profile():
-  cursor = g.conn.execute("SELECT aname FROM Appears_In AS ai, Individuals AS i, Affiliations AS a, Powers AS p ")
-  anames = []
-  for result in cursor:
-    anames.append(result['aname'])  # can also be accessed using result[0]
+  alias = request.args['alias']
+  cursor = g.conn.execute('SELECT i.alias, i.name, i.appdate, i.species, i.uid FROM Individuals AS i WHERE i.alias = (%s)', alias)
+  results = []
+  for person in cursor:
+    row = []
+    row.append(person[0])
+    row.append(person[1])
+    row.append(person[2])
+    row.append(person[3])
+    row.append(person[4])
+    results.append(row)
   cursor.close()
-
-  return render_template("media.html", **context)
+  context = dict(data = results)
+  return render_template("profile.html", **context)
 
 
 
