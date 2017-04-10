@@ -185,6 +185,7 @@ def profile(alias):
     results.append(row)
   cursor.close()
   results1 = []
+  affiliation = null;
   cursor = g.conn.execute('SELECT b.aname FROM Belongs_To AS b WHERE b.alias = (%s)' , alias)
   for result in cursor:
     affiliation = result[0]
