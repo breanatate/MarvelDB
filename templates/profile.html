@@ -49,6 +49,18 @@ tr:nth-child(even) {
   	</tr>
   	{% endfor %}
   </table>
+  <h2>Suggestions</h2>
+  <table>
+  <tr>
+    <th>Alias</th>
+  </tr>
+  	{% for n in data %}
+  	<tr>
+    	<td><a href='/profile/{{n[0]}}'>{{n[0]}}</a></td>
+    	
+  	</tr>
+  	{% endfor %}
+  </table>
 	
 </body>
 </html>
