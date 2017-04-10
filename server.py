@@ -169,9 +169,8 @@ def index():
 #
 
 #profile page
-@app.route('/profile', methods=['GET'])
-def profile():
-  alias = request.args['alias']
+@app.route('/profile/<alias>')
+def profile(alias):
   cursor = g.conn.execute('SELECT i.alias, i.name, i.appdate, i.species, i.uid FROM Individuals AS i WHERE i.alias = (%s)', alias)
   results = []
   for person in cursor:
