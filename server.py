@@ -192,9 +192,9 @@ def profile(alias):
   cursor.close()
   affiliation = affiliations[0]
   cursor = g.conn.execute('SELECT b.alias FROM Belongs_To AS b WHERE b.aname = (%s)' , affiliation)
-    for result1 in cursor:
-      results1.append(result1[0])
-    cursor.close()
+  for result1 in cursor:
+    results1.append(result1[0])
+  cursor.close()
   context = dict(data = results, data1 =results1)
   return render_template("profile.html", **context)
 
