@@ -180,7 +180,7 @@ def profile(alias):
     row.append(person[2])
     row.append(person[3])
     row.append(person[4])
-    row.append(person[4])
+    row.append(person[5])
 
     results.append(row)
   cursor.close()

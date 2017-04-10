@@ -32,7 +32,6 @@ tr:nth-child(even) {
     <th>Alias</th>
     <th>Name</th>
     <th>Appearance Date</th>
-    <th>Species</th>
     <th>Universe</th>
   </tr>
   	{% for n in data %}
@@ -41,8 +40,6 @@ tr:nth-child(even) {
     	<td>{{n[1]}}</td>
     	<td>{{n[2]}}</td>
     	<td>{{n[3]}}</td>
-    	<td>{{n[4]}}</td>
-    	
   	</tr>
   	{% endfor %}
   </table>
