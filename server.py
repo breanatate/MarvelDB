@@ -167,18 +167,8 @@ def index():
 # Notice that the function name is another() rather than index()
 # The functions for each app.route need to have different names
 #
-#@app.route('/another')
-#def another():
 
- # cursor = g.conn.execute("SELECT i.name FROM individuals AS i, affiliations AS a WHERE a.aname = 'avengers'")
-  #results = []
-  #for result in cursor:
-   # results.append(result['result'])  # can also be accessed using result[0]
-  #cursor.close()
-  #context = dict(data = results)
-  #return render_template("another.html", **context)
-
-#media tab
+#profile page
 @app.route('/profile', methods=['GET'])
 def profile():
   cursor = g.conn.execute("SELECT aname FROM Appears_In AS ai, Individuals AS i, Affiliations AS a, Powers AS p ")
@@ -218,8 +208,6 @@ def results():
       row.append(person[2])
       row.append(person[3])
       row.append(person[4])
-
-
       results.append(row)
     cursor.close()
   
