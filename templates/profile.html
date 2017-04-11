@@ -59,6 +59,10 @@ table#table1 {
     	<td>{{n[5]}}</td>
     </tr>
     <tr>
+    	<th>Power</th>
+    	<td>{{n[6]}}</td>
+    </tr>
+    <tr>
     	<th>Affiliation</th>
     	{%for x in data1%}
     	<td value = "{{x}}">{{x}}</td>
@@ -91,18 +95,60 @@ table#table1 {
     	<td>{{n[1]}}</td>
   	</tr>
   	{% endfor %}
+  </table>
+  <table>
   	{%for n in book%}
   	<tr>
-  		<th>Author</th>
+  		<th>Title</th>
     	<td>{{n[0]}}</td>
+    </tr>
+    <tr>
+    	<th>Release Date</th>
+    	<td>{{n[1]}}</td>
+    </tr>
+    <tr>
+    	<th>Author</th>
+    	<td>{{n[2]}}</td>
   	</tr>
   	{% endfor %}
+  </table>
+  <table>
   	{%for n in movie%}
   	<tr>
-  		<th>Phase</th>
+  		<th>Title</th>
     	<td>{{n[0]}}</td>
-    	<th>Director</th>
+    </tr>
+    <tr>
+    	<th>Release Date</th>
     	<td>{{n[1]}}</td>
+    </tr>
+    <tr>
+  		<th>Phase</th>
+    	<td>{{n[2]}}</td>
+    </tr>
+    <tr>
+    	<th>Director</th>
+    	<td>{{n[3]}}</td>
+  	</tr>
+  	{% endfor %}
+  </table>
+  <table>
+  	{%for n in show%}
+  	<tr>
+  		<th>Title</th>
+    	<td>{{n[0]}}</td>
+    </tr>
+    <tr>
+    	<th>Release Date</th>
+    	<td>{{n[1]}}</td>
+    </tr>
+    <tr>
+  		<th>Channel</th>
+    	<td>{{n[2]}}</td>
+    </tr>
+    <tr>
+    	<th>Director</th>
+    	<td>{{n[3]}}</td>
   	</tr>
   	{% endfor %}
   </table>

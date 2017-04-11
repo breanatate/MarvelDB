@@ -181,7 +181,10 @@ def profile(alias):
     row.append(person[3])
     row.append(person[4])
     row.append(person[5])
-
+    cursor = g.conn.execute('SELECT h.powname FROM Has_A AS h WHERE h.alias = (%s)', alias)
+    for power in cursor:
+      row.append(power[0])
+    cursor.close()
     results.append(row)
   cursor.close()
   affiliation = []
@@ -220,7 +223,7 @@ def profile(alias):
     cursor = g.conn.execute('SELECT b.author FROM Books AS b WHERE b.title = (%s)', title)
     for author in cursor:
       #media.append(author[0])
-      books.append(author[0])
+      books.append(author)
       book = true
     cursor.close()
     cursor = g.conn.execute('SELECT t.channel, t.director FROM TVShows AS t WHERE t.title = (%s)', title)
