@@ -214,32 +214,36 @@ def profile(alias):
     row.append(result[0])
     row.append(result[1])
     media.append(row)
-    books.append(row)
-    shows.append(row)
-    movies.append(row)
   cursor.close()
   for thing in media:
     title = thing[0]
-    cursor = g.conn.execute('SELECT b.author FROM Books AS b WHERE b.title = (%s)', title)
+    cursor = g.conn.execute('SELECT b.title, b.releasedate, b.author FROM Books AS b WHERE b.title = (%s)', title)
     for author in cursor:
-      #media.append(author[0])
-      books.append(author)
+      row = []
+      row.append(author[0])
+      row.append(author[1])
+      row.append(author[2])
+      books.append(row)
       book = true
     cursor.close()
-    cursor = g.conn.execute('SELECT t.channel, t.director FROM TVShows AS t WHERE t.title = (%s)', title)
+    cursor = g.conn.execute('SELECT t.title, t.releasedate, t.channel, t.director FROM TVShows AS t WHERE t.title = (%s)', title)
     for show in cursor:
       row = []
       row.append(show[0])
       row.append(show[1])
+      row.append(show[2])
+      row.append(show[3])
       #media.append(row)
       shows.append(row)
       show = true
     cursor.close()
-    cursor = g.conn.execute('SELECT m.phase, m.director FROM Movies AS m WHERE m.title = (%s)', title)
+    cursor = g.conn.execute('SELECT m.title, m.releasedate, m.phase, m.director FROM Movies AS m WHERE m.title = (%s)', title)
     for movie in cursor:
         row = []
         row.append(movie[0])
         row.append(movie[1])
+        row.append(movie[2])
+        row.append(movie[3])
         movie = true
         #media.append(row)
         movies.append(row)
