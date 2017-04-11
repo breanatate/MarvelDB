@@ -187,7 +187,7 @@ def profile(alias):
   affiliation = []
   cursor = g.conn.execute('SELECT b.aname FROM Belongs_To AS b WHERE b.alias = (%s)', alias)
   for aff in cursor:
-    affiliation.append(aff)
+    affiliation.append(aff[0])
   cursor.close()
   if affiliation:
     aff = affiliation[0]
@@ -196,10 +196,57 @@ def profile(alias):
     for person in cursor:
         suggests.append(person)
     cursor.close()
-  if affiliation:
-    context = dict(data = results, data1 = affiliation, data2 = suggests)
+
+  #media
+  media =[]
+  book = false
+  show = false
+  movie = false
+  cursor = g.conn.execute('SELECT m.title, m.releasedate FROM Appears_In AS m WHERE m.alias = (%s)', alias)
+  for result in cursor:
+    row = []
+    row.append(result[0])
+    row.append(result[1])
+    media.append(row)
+  cursor.close()
+  title = media[0]
+  for thing in media:
+    cursor = g.conn.execute('SELECT b.author FROM Books AS b WHERE b.title = (%s)', title)
+    for author in cursor:
+      media.append(author[0])
+      book = true
+    cursor.close()
+    cursor = g.conn.execute('SELECT t.channel, t.director FROM TVShows AS t WHERE t.title = (%s)', title)
+    for show in cursor:
+      row = []
+      row.append(show[0])
+      row.append(show[1])
+      media.append(row)
+      show = true
+    cursor.close()
+    cursor = g.conn.execute('SELECT m.phase, m.director FROM Movies AS m WHERE m.title = (%s)', title)
+    for movie in cursor:
+        row = []
+        row.append(movie[0])
+        row.append(movie[1])
+        movie = true
+        media.append(row)
+    cursor.close()
+  cursor.close()
+  if affiliation and book:
+    context = dict(data = results, data1 = affiliation, data2 = suggests, book = media)
+  if affiliation and show:
+    context = dict(data = results, data1 = affiliation, data2 = suggests, show = media)
+  if affiliation and movie:
+    context = dict(data = results, data1 = affiliation, data2 = suggests, movie = media)
+  elif book:
+    context = dict(data = results, book = media)
+  elif show:
+    context = dict(data = results, show = media)
+  elif movie:
+      context = dict(data = results, movie = media)
   else:
-    context = dict(data = results)
+    context = dict(data = results, data3 = media)
   return render_template("profile.html", **context)
 
 
