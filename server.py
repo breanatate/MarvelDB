@@ -202,6 +202,7 @@ def profile(alias):
   book = false
   show = false
   movie = false
+  title = null;
   cursor = g.conn.execute('SELECT m.title, m.releasedate FROM Appears_In AS m WHERE m.alias = (%s)', alias)
   for result in cursor:
     row = []
@@ -209,7 +210,8 @@ def profile(alias):
     row.append(result[1])
     media.append(row)
   cursor.close()
-  title = media[0]
+  for thing in media:
+    title = thing[0]
   for thing in media:
     cursor = g.conn.execute('SELECT b.author FROM Books AS b WHERE b.title = (%s)', title)
     for author in cursor:
