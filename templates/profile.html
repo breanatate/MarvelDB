@@ -84,20 +84,25 @@ table#table1 {
   </table>
 
  <h2>Media</h2>
-  <table>
-  	{%for n in data3%}
-  	<tr>
-    	<th>Title</th>
-    	<td>{{n[0]}}</td>
-    </tr>
-    <tr>
-    	<th>Release Date</th>
-    	<td>{{n[1]}}</td>
-  	</tr>
-  	{% endfor %}
-  </table>
-  <table>
-  	{%for n in book%}
+
+{%for n in data3%}
+<table>
+  	
+	<tr>
+		<th>Title</th>
+		<td>{{n[0]}}</td>
+	</tr>
+	<tr>
+		<th>Release Date</th>
+		<td>{{n[1]}}</td>
+	</tr>
+  	
+</table>
+<br>
+{% endfor %}
+
+{%for n in book%}
+  	<table>
   	<tr>
   		<th>Title</th>
     	<td>{{n[0]}}</td>
@@ -110,10 +115,13 @@ table#table1 {
     	<th>Author</th>
     	<td>{{n[2]}}</td>
   	</tr>
-  	{% endfor %}
   </table>
-  <table>
-  	{%for n in movie%}
+  <br>
+{% endfor %}
+
+{%for n in movie%}
+<br>
+<table>
   	<tr>
   		<th>Title</th>
     	<td>{{n[0]}}</td>
@@ -130,10 +138,14 @@ table#table1 {
     	<th>Director</th>
     	<td>{{n[3]}}</td>
   	</tr>
-  	{% endfor %}
-  </table>
-  <table>
-  	{%for n in show%}
+	 
+</table> 
+<br/>
+{% endfor %}
+
+{%for n in show%}
+<br>
+<table>
   	<tr>
   		<th>Title</th>
     	<td>{{n[0]}}</td>
@@ -150,8 +162,8 @@ table#table1 {
     	<th>Director</th>
     	<td>{{n[3]}}</td>
   	</tr>
-  	{% endfor %}
-  </table>
+</table>
+{% endfor %}
 	
 </body>
 </html>
