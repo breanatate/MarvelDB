@@ -199,23 +199,28 @@ def profile(alias):
 
   #media
   media =[]
+  movies = []
+  books = []
+  shows = []
   book = false
   show = false
   movie = false
-  title = null;
   cursor = g.conn.execute('SELECT m.title, m.releasedate FROM Appears_In AS m WHERE m.alias = (%s)', alias)
   for result in cursor:
     row = []
     row.append(result[0])
     row.append(result[1])
     media.append(row)
+    books.append(row)
+    shows.append(row)
+    movies.append(row)
   cursor.close()
   for thing in media:
     title = thing[0]
-  for thing in media:
     cursor = g.conn.execute('SELECT b.author FROM Books AS b WHERE b.title = (%s)', title)
     for author in cursor:
-      media.append(author[0])
+      #media.append(author[0])
+      books.append(author[0])
       book = true
     cursor.close()
     cursor = g.conn.execute('SELECT t.channel, t.director FROM TVShows AS t WHERE t.title = (%s)', title)
@@ -223,7 +228,8 @@ def profile(alias):
       row = []
       row.append(show[0])
       row.append(show[1])
-      media.append(row)
+      #media.append(row)
+      shows.append(row)
       show = true
     cursor.close()
     cursor = g.conn.execute('SELECT m.phase, m.director FROM Movies AS m WHERE m.title = (%s)', title)
@@ -232,21 +238,22 @@ def profile(alias):
         row.append(movie[0])
         row.append(movie[1])
         movie = true
-        media.append(row)
+        #media.append(row)
+        movies.append(row)
     cursor.close()
   cursor.close()
   if affiliation and book:
-    context = dict(data = results, data1 = affiliation, data2 = suggests, book = media)
+    context = dict(data = results, data1 = affiliation, data2 = suggests, book = books)
   if affiliation and show:
-    context = dict(data = results, data1 = affiliation, data2 = suggests, show = media)
+    context = dict(data = results, data1 = affiliation, data2 = suggests, show = shows)
   if affiliation and movie:
-    context = dict(data = results, data1 = affiliation, data2 = suggests, movie = media)
+    context = dict(data = results, data1 = affiliation, data2 = suggests, movie = movies)
   elif book:
-    context = dict(data = results, book = media)
+    context = dict(data = results, book = books)
   elif show:
-    context = dict(data = results, show = media)
+    context = dict(data = results, show = shows)
   elif movie:
-      context = dict(data = results, movie = media)
+      context = dict(data = results, movie = movies)
   else:
     context = dict(data = results, data3 = media)
   return render_template("profile.html", **context)
