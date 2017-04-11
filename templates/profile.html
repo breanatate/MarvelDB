@@ -20,6 +20,10 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+table#table1 {
+    width: 30%;    
+    background-color: #CD5C5C;
+}
 
 
 </style>
@@ -36,6 +40,7 @@ tr:nth-child(even) {
     <th>Species</th>
     <th>Universe</th>
     <th>Equipment</th>
+    <th>Affiliation</th>
   </tr>
   	{% for n in data %}
   	<tr>
@@ -45,19 +50,21 @@ tr:nth-child(even) {
     	<td>{{n[3]}}</td>
     	<td>{{n[4]}}</td>
     	<td>{{n[5]}}</td>
-    	
+    	{%for x in data1%}
+    	<td value = "{{x}}">{{x}}</td>
+    	{% endfor %}
   	</tr>
   	{% endfor %}
+  		
   </table>
   <h2>Suggestions</h2>
-  <table>
+  <table id = "table1">
   <tr>
     <th>Alias</th>
   </tr>
-  	{% for n in data %}
+  	{% for n in data2 %}
   	<tr>
     	<td><a href='/profile/{{n[0]}}'>{{n[0]}}</a></td>
-    	
   	</tr>
   	{% endfor %}
   </table>
