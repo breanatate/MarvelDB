@@ -1,0 +1,43 @@
+<html>
+<style>
+body{ 
+  font-size: 15pt;
+  font-family: arial;
+}
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 40%;
+	margin-right:10px
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+
+</style>
+<body>
+  <h3><a href="/">Return to Index</a></h3>
+  <h2>In this universe:</h2>
+  <table>
+    <th>
+      {% for n in data %}
+        <tr>
+          <td><a href='/profile/{{n}}'>{{n}}</a></td>
+        </tr>
+      {% endfor %}
+    </th>
+  </table>
+
+
+
+</body>
+</html>
