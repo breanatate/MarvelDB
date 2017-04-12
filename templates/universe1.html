@@ -28,13 +28,20 @@ tr:nth-child(even) {
   <h3><a href="/">Return to Index</a></h3>
   <h2>In this universe:</h2>
   <table>
-    <th>
-      {% for n in data %}
-        <tr>
-          <td><a href='/profile/{{n}}'>{{n}}</a></td>
-        </tr>
-      {% endfor %}
-    </th>
+    <tr>
+    <th>Alias</th>
+    <th>Name</th>
+    <th>Appearance Date</th>
+    <th>Universe</th>
+  </tr>
+    {% for n in data %}
+    <tr>
+      <td><a href='/profile/{{n[0]}}'>{{n[0]}}</a></td>
+      <td>{{n[1]}}</td>
+      <td>{{n[2]}}</td>
+      <td>{{n[3]}}</td>
+    </tr>
+    {% endfor %}
   </table>
 
 
