@@ -30,48 +30,75 @@ table#table1 {
 
 <body>
 	<h3><a href="/">Return to Index</a></h3>
-	{% for n in data %}
-	<h1>{{n[0]}}</h1>
-	{% endfor %}
-<table>
-  	{% for n in data %}
-  	<tr>
-  		<th>Alias</th>
-    	<td>{{n[0]}}</td>
+	
+  {% for n in data %}
+  <h1>{{n[0]}}</h1>
+  {% endfor %}
+  <br>
+
+  <table>
+    {% for n in data %}
+    <tr>
+      <th>Alias</th>
+      <td>{{n[0]}}</td>
     </tr>
     <tr>
-    	<th>Name</th>
-    	<td>{{n[1]}}</td>
+      <th>Name</th>
+      <td>{{n[1]}}</td>
     </tr>
     <tr>
-    	<th>Appearance Date</th>
-    	<td>{{n[2]}}</td>
+      <th>Type</th>
+      <td>{{n[11]}}</td>
     </tr>
     <tr>
-    	<th>Species</th>
-    	<td>{{n[3]}}</td>
+      <th>Appearance Date</th>
+      <td>{{n[2]}}</td>
     </tr>
     <tr>
-    	<th>Universe</th>
-    	<td>{{n[4]}}</td>
+      <th>Species</th>
+      <td>{{n[3]}}</td>
     </tr>
     <tr>
-    	<th>Equipment</th>
-    	<td>{{n[5]}}</td>
+      <th>Universe</th>
+      <td><a href='/universe/{{n[4]}}'>{{n[4]}}</a></td>
     </tr>
     <tr>
-    	<th>Power</th>
-    	<td>{{n[6]}}</td>
+      <th>Equipment</th>
+      <td>{{n[5]}}</td>
     </tr>
     <tr>
-    	<th>Affiliation</th>
-    	{%for x in data1%}
-    	<td value = "{{x}}">{{x}}</td>
-    	{% endfor %}
-  	</tr>
-  	{% endfor %}
-  		
+      <th>Power</th>
+      <td>{{n[6]}}</td>
+    </tr>
+    <tr>
+      <th>Main Color</th>
+      <td>{{n[7]}}</td>
+    </tr>
+    <tr>
+      <th>Sidekick</th>
+      <td>{{n[8]}}</td>
+    </tr>
+    <tr>
+      <th>Employer</th>
+      <td>{{n[9]}}</td>
+    </tr>
+    <tr>
+      <th>Nemesis</th>
+      <td>{{n[10]}}</td>
+    </tr>
+
+    <tr>
+      <th>Affiliation</th>
+      {%for x in data1%}
+      <td value = "{{x}}">{{x}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+      
   </table>
+
+  
+ 
   <h2>Suggestions</h2>
   <table id = "table1">
   <tr>

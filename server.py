@@ -168,25 +168,78 @@ def index():
 # The functions for each app.route need to have different names
 #
 
+@app.route('/universe/<uid>')
+def universe(uid):
+  cursor = g.conn.execute('SELECT i.alias FROM Individuals AS i WHERE i.uid = (%s)', uid)
+  results = []
+  for person in cursor:
+    results.append(person[0])
+  cursor.close
+  context = dict(data=results)
+  return render_template("universe.html", **context)
+
+
 #profile page
 @app.route('/profile/<alias>')
 def profile(alias):
+
   cursor = g.conn.execute('SELECT i.alias, i.name, i.appdate, i.species, i.uid, i.equipment FROM Individuals AS i WHERE i.alias = (%s)', alias)
   results = []
+  civilian = false
+  hero = false
+  villain = false
   for person in cursor:
     row = []
-    row.append(person[0])
+    row.append(person[0]) 
     row.append(person[1])
     row.append(person[2])
     row.append(person[3])
     row.append(person[4])
     row.append(person[5])
+  
     cursor = g.conn.execute('SELECT h.powname FROM Has_A AS h WHERE h.alias = (%s)', alias)
     for power in cursor:
-      row.append(power[0])
+      row.append(power[0]) #index 6
     cursor.close()
+    if len(row)< 7:
+      row.append("None") #index 6
+    cursor = g.conn.execute('SELECT h.maincolor, h.sidekick FROM Heroes AS h WHERE h.alias = (%s)', alias)
+    for ind in cursor:
+      row.append(ind[0]) #index 7
+      row.append(ind[1]) #index 8
+      hero = true
+      
+    cursor.close()
+    if len(row)< 9:
+      row.append("NA")
+      row.append("NA")
+    
+    cursor = g.conn.execute('SELECT c.employer FROM Civilians AS c WHERE c.alias = (%s)', alias)
+    for ind in cursor:
+      row.append(ind[0]) #index 9
+      civilian = true
+      
+    cursor.close()
+    if len(row)< 10:
+      row.append("NA")
+   
+    cursor = g.conn.execute('SELECT v.nemesis FROM Villains AS v WHERE v.alias = (%s)', alias)
+    for ind in cursor:
+      row.append(ind[0]) #index 10
+      villain = true
+    cursor.close()
+    if len(row) < 11:
+      row.append("NA")
+
+    if hero == true:
+      row.append("Hero")
+    elif civilian == true:
+      row.append("Civilian")
+    elif villain == true:
+      row.append("Villain")
     results.append(row)
   cursor.close()
+
   affiliation = []
   cursor = g.conn.execute('SELECT b.aname FROM Belongs_To AS b WHERE b.alias = (%s)', alias)
   for aff in cursor:
@@ -200,6 +253,8 @@ def profile(alias):
         suggests.append(person)
     cursor.close()
 
+
+
   #media
   media =[]
   movies = []
@@ -208,15 +263,19 @@ def profile(alias):
   book = false
   show = false
   movie = false
+  row = []
+
   cursor = g.conn.execute('SELECT m.title, m.releasedate FROM Appears_In AS m WHERE m.alias = (%s)', alias)
   for result in cursor:
     row = []
     row.append(result[0])
     row.append(result[1])
     media.append(row)
+
   cursor.close()
   for thing in media:
     title = thing[0]
+
     cursor = g.conn.execute('SELECT b.title, b.releasedate, b.author FROM Books AS b WHERE b.title = (%s)', title)
     for author in cursor:
       row = []
@@ -224,19 +283,21 @@ def profile(alias):
       row.append(author[1])
       row.append(author[2])
       books.append(row)
-      book = true
+      
     cursor.close()
+
     cursor = g.conn.execute('SELECT t.title, t.releasedate, t.channel, t.director FROM TVShows AS t WHERE t.title = (%s)', title)
     for show in cursor:
-      row = []
-      row.append(show[0])
-      row.append(show[1])
-      row.append(show[2])
-      row.append(show[3])
-      #media.append(row)
-      shows.append(row)
-      show = true
+        row = []
+        row.append(show[0])
+        row.append(show[1])
+        row.append(show[2])
+        row.append(show[3])
+
+        shows.append(row)
+        
     cursor.close()
+
     cursor = g.conn.execute('SELECT m.title, m.releasedate, m.phase, m.director FROM Movies AS m WHERE m.title = (%s)', title)
     for movie in cursor:
         row = []
@@ -244,25 +305,47 @@ def profile(alias):
         row.append(movie[1])
         row.append(movie[2])
         row.append(movie[3])
-        movie = true
-        #media.append(row)
+    
         movies.append(row)
     cursor.close()
-  cursor.close()
-  if affiliation and book:
+
+  if affiliation and books and movies:
+    context = dict(data = results, data1 = affiliation, data2 = suggests, book = books, movie = movies)
+  elif affiliation and books:
     context = dict(data = results, data1 = affiliation, data2 = suggests, book = books)
-  if affiliation and show:
+  elif affiliation and shows:
     context = dict(data = results, data1 = affiliation, data2 = suggests, show = shows)
-  if affiliation and movie:
+  elif affiliation and movies:
     context = dict(data = results, data1 = affiliation, data2 = suggests, movie = movies)
-  elif book:
+  elif affiliation and shows and movies:
+    context = dict(data = results, data1 = affiliation, data2 = suggests, show = shows, movie = movies)
+  elif affiliation and movies and shows:
+    context = dict(data = results, data1 = affiliation, data2 = suggests, movie = movies, show = shows)
+
+  elif books:
+    
     context = dict(data = results, book = books)
-  elif show:
+
+  elif books and movies:
+    
+    context = dict(data = results, book = books, movie = movies)
+
+  elif shows:
+    
     context = dict(data = results, show = shows)
-  elif movie:
-      context = dict(data = results, movie = movies)
+
+  elif shows and movies:
+    
+    context = dict(data = results, show = shows, movie = movies)
+
+  elif movies:
+    context = dict(data = results, movie = movies)
+
   else:
     context = dict(data = results, data3 = media)
+  
+
+    
   return render_template("profile.html", **context)
 
 
