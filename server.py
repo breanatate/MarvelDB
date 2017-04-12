@@ -122,6 +122,13 @@ def index():
   cursor.close()
   
 
+  #universes
+  cursor = g.conn.execute("SELECT uid FROM Universes")
+  universes= []
+  for result in cursor:
+    universes.append(result[0])  # can also be accessed using result[0]
+  cursor.close()
+
 
   #
   # Flask uses Jinja templates, which is an extension to HTML where you can
@@ -149,7 +156,7 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = cities)
+  context = dict(data = cities, data1 = universes)
  
 
   #
@@ -167,6 +174,16 @@ def index():
 # Notice that the function name is another() rather than index()
 # The functions for each app.route need to have different names
 #
+@app.route('/universe1', methods=['GET'])
+def universe1():
+  uid = request.args['unis']
+  results = []
+  cursor = g.conn.execute('SELECT i.alias FROM Individuals AS i WHERE i.uid = (%s)', uid)
+  for person in cursor:
+    results.append(person[0])
+  cursor.close
+  context = dict(data = results)
+  return render_template("universe1.html", **context)
 
 @app.route('/universe/<uid>')
 def universe(uid):
@@ -177,6 +194,7 @@ def universe(uid):
   cursor.close
   context = dict(data=results)
   return render_template("universe.html", **context)
+
 
 
 #profile page

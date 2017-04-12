@@ -20,6 +20,17 @@
 <form method = "GET" action= "/another" id ="selection"> 
     <input type="submit" value="Submit">
   </form>
+
+<div style="float:left">
+  Universe: <select id = "unis" name="unis" form = "selectuni">
+              {% for n in data1 %}
+            <option value="{{n}}">{{n}}</option>
+              {% endfor %}
+            </select>
+  </div>
+<form method = "GET" action= "/universe1" id ="selectuni"> 
+    <input type="submit" value="Submit">
+  </form>
   
 
 
