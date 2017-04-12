@@ -1,0 +1,34 @@
+<html>
+<body>
+    <h3><a href="/">Return to Index</a></h3>
+    <h2>Add a new character</h2>
+    <h3>Fields indicated with a '*' are required</h3>
+    
+<form method="POST" action=/add>
+    <p>Character Type: 
+        <select>
+	    <option value="hero">Hero</option>
+	    <option value="villain">Villain</option>
+	    <option value="civilian">Civilian</option>
+        </select>
+    </p>
+    <p>Name: <input type="text" name="name" required></p> 
+    <p>*Alias: <input type="text" name="alias" required></p>
+    <p>*Universe: <input type="text" name="uid" placeholder="Ex: Earth-616" required></p> 
+    <p>Appearance Date: <input type="date" name="appdate" value="Jan-01-2017"></p> 
+    <p>Species: <input type="text" name="species"></p>
+    <p>Equipment: <input type="text" name="equipment"></p> 
+    <p>Nemesis: <input type="text" name="nemesis"></p>
+    <p>Main Color: <input type="text" name="maincolor"></P>
+    <p>Sidekick: <input type="text" name ="sidekick"></p>
+    <input type="submit" value="Add">
+</form>
+
+
+</body>
+
+
+
+
+
+</html>

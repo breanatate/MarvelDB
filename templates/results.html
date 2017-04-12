@@ -1,0 +1,51 @@
+<html>
+<style>
+body{ 
+  font-size: 15pt;
+  font-family: arial;
+}
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	margin-right:20px
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+</style>
+
+<body>
+	<h3><a href="/">Return to Search</a></h3>
+	<h1>Results</h1>
+	<h2>Individuals that match this classification:</h2>
+	
+<table>
+  <tr>
+    <th>Alias</th>
+    <th>Name</th>
+    <th>Appearance Date</th>
+    <th>Universe</th>
+  </tr>
+  	{% for n in data %}
+  	<tr>
+    	<td><a href='/profile/{{n[0]}}'>{{n[0]}}</a></td>
+    	<td>{{n[1]}}</td>
+    	<td>{{n[2]}}</td>
+    	<td>{{n[3]}}</td>
+  	</tr>
+  	{% endfor %}
+  </table>
+	
+</body>
+</html>
+
