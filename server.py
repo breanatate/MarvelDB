@@ -178,9 +178,16 @@ def index():
 def universe1():
   uid = request.args['unis']
   results = []
-  cursor = g.conn.execute('SELECT i.alias FROM Individuals AS i WHERE i.uid = (%s)', uid)
+  cursor = g.conn.execute('SELECT i.alias, i.name, i.appdate, i.uid FROM Individuals AS i WHERE i.uid = (%s)', uid)
   for person in cursor:
-    results.append(person[0])
+    row = []
+    row.append(person[0])
+    row.append(person[1])
+    row.append(person[2])
+    row.append(person[3])
+
+    results.append(row)
+
   cursor.close
   context = dict(data = results)
   return render_template("universe1.html", **context)
